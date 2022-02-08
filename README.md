@@ -1,1 +1,1 @@
-# btcusd
+# btc2fiat
