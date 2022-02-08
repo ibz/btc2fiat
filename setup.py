@@ -98,9 +98,9 @@ setup(
     python_requires=REQUIRES_PYTHON,
     url=URL,
     py_modules=['btc2fiat'],
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
+    entry_points={
+        'console_scripts': ['btc2fiat=btc2fiat:get_value'],
+    },
     install_requires=REQUIRED,
     extras_require={},
     include_package_data=True,
