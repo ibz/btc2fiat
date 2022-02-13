@@ -18,7 +18,7 @@ URL = 'https://github.com/ibz/btc2fiat'
 EMAIL = 'github@ibz.me'
 AUTHOR = 'Ioan Bizău'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.1'
+VERSION = '0.1.2'
 
 REQUIRED = [
     'click', 'requests'

@@ -2,6 +2,7 @@
 
 import abc
 import sys
+import traceback
 
 import click
 from requests import Request, Session
@@ -43,17 +44,23 @@ class Kraken(Exchange):
 EXCHANGES = {'binance': Binance, 'coinbase': Coinbase, 'kraken': Kraken}
 
 @click.command()
-@click.option('--exchange', default='kraken')
+@click.option('--exchange', type=click.Choice(EXCHANGES.keys(), case_sensitive=False), default='kraken')
 @click.option('--fiat-symbol', default='USD')
-def get_value(exchange, fiat_symbol):
-    exchange = EXCHANGES[exchange]()
-    session = Session()
-    request = exchange.build_request(fiat_symbol)
-    prepared_request = session.prepare_request(request)
-    response = session.send(prepared_request)
-    value = exchange.get_value(response, fiat_symbol)
+@click.option('--debug', is_flag=True, default=False)
+def get_value(exchange, fiat_symbol, debug):
+    try:
+        exchange = EXCHANGES[exchange]()
+        session = Session()
+        request = exchange.build_request(fiat_symbol)
+        prepared_request = session.prepare_request(request)
+        response = session.send(prepared_request)
+        value = exchange.get_value(response, fiat_symbol)
 
-    print(value)
+        print(value)
+    except Exception as e:
+        if debug:
+            traceback.print_exception(type(e), e, e.__traceback__)
+        sys.exit(1)
 
 if __name__ == '__main__':
     get_value()
