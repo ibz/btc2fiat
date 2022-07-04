@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "es2022",
+        "outDir": "./jsdist",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true
+    },
+    "exclude": [
+        "node_modules",
+        "jsdist"
+    ]
+}

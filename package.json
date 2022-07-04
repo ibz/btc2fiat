@@ -1,0 +1,33 @@
+{
+  "type": "module",
+  "name": "btc2fiat",
+  "version": "0.1.21",
+  "author": {
+    "email": "github@ibz.me",
+    "name": "Ioan Bizău"
+  },
+  "license": "MIT",
+  "description": "Bitcoin price expressed in fiat currency. As simple as that.",
+  "keywords": [
+    "bitcoin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibz/btc2fiat"
+  },
+  "scripts": {
+    "build": "rm -rf jsdist && tsc && cp package.json jsdist"
+  },
+  "bin": {
+    "btc2fiat": "cmd.js"
+  },
+  "exports": "./btc2fiat.js",
+  "types": "./btc2fiat.d.ts",
+  "dependencies": {
+    "node-fetch": "2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "typescript": "^4.7.2"
+  }
+}

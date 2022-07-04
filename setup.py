@@ -18,7 +18,7 @@ URL = 'https://github.com/ibz/btc2fiat'
 EMAIL = 'github@ibz.me'
 AUTHOR = 'Ioan Bizău'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.2'
+VERSION = '0.1.20'
 
 REQUIRED = [
     'click', 'requests'
@@ -79,12 +79,7 @@ class UploadCommand(Command):
         self.status('Uploading the package to PyPI via Twine...')
         os.system('twine upload dist/*')
 
-        self.status('Pushing git tags...')
-        os.system('git tag v{0}'.format(about['__version__']))
-        os.system('git push --tags')
-
         sys.exit()
-
 
 # Where the magic happens:
 setup(
@@ -99,7 +94,7 @@ setup(
     url=URL,
     py_modules=['btc2fiat'],
     entry_points={
-        'console_scripts': ['btc2fiat=btc2fiat:get_value'],
+        'console_scripts': ['btc2fiat=btc2fiat:get_value_command'],
     },
     install_requires=REQUIRED,
     extras_require={},

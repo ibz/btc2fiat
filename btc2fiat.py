@@ -43,24 +43,28 @@ class Kraken(Exchange):
 
 EXCHANGES = {'binance': Binance, 'coinbase': Coinbase, 'kraken': Kraken}
 
+def get_value(exchange=None, fiat_symbol=None):
+    if exchange is None:
+        exchange = 'kraken'
+    if fiat_symbol is None:
+        fiat_symbol = 'USD'
+
+    exchange = EXCHANGES[exchange]()
+    session = Session()
+    request = exchange.build_request(fiat_symbol)
+    prepared_request = session.prepare_request(request)
+    response = session.send(prepared_request)
+
+    return exchange.get_value(response, fiat_symbol)
+
 @click.command()
 @click.option('--exchange', type=click.Choice(EXCHANGES.keys(), case_sensitive=False), default='kraken')
 @click.option('--fiat-symbol', default='USD')
 @click.option('--debug', is_flag=True, default=False)
-def get_value(exchange, fiat_symbol, debug):
+def get_value_command(exchange, fiat_symbol, debug):
     try:
-        exchange = EXCHANGES[exchange]()
-        session = Session()
-        request = exchange.build_request(fiat_symbol)
-        prepared_request = session.prepare_request(request)
-        response = session.send(prepared_request)
-        value = exchange.get_value(response, fiat_symbol)
-
-        print(value)
+        print(get_value(exchange, fiat_symbol))
     except Exception as e:
         if debug:
             traceback.print_exception(type(e), e, e.__traceback__)
         sys.exit(1)
-
-if __name__ == '__main__':
-    get_value()
