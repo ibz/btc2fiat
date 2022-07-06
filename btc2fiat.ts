@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 
 export abstract class Exchange {
   protected abstract getUrl(fiatSymbol: string) : string;

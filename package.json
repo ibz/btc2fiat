@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "btc2fiat",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "author": {
     "email": "github@ibz.me",
     "name": "Ioan Bizău"
@@ -23,9 +23,6 @@
   },
   "exports": "./btc2fiat.js",
   "types": "./btc2fiat.d.ts",
-  "dependencies": {
-    "node-fetch": ">=2.6.7"
-  },
   "devDependencies": {
     "@types/node": "^17.0.35",
     "typescript": "^4.7.2"
